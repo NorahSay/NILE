@@ -12,6 +12,7 @@
  * REVISION HISTORY
  * 0.1 250304 ns Create file
  * 0.2 250404 ns Added ADC_read, ADC_config - tested operational
+ * 0.3 250409 ns Added get_pressure - not tested
  *****************************************************************************/
 
 /* Includes ------------------------------------------------------------------*/
@@ -31,6 +32,7 @@
 * REVISION HISTORY
 * 0.1 250304 Configure SPI pins and configure I2C
 * 0.2 250404 Initialize ADC to A0
+* 0.3 250410 Remove initialize to A0
 * -----------------------------------------------------------------------------
 * SPI pins configuration:
 	 * SCL (PB8) - floating, open-drain, high speed
@@ -60,8 +62,39 @@ void ADC_init(void) {
 	I2C1->CR2 &= ~( I2C_CR2_AUTOEND);   	// Manual send STOP
 	I2C1->CR2 &= ~( I2C_CR2_ADD10);     	// 7-bit address mode
 	I2C1->CR1 |= ( I2C_CR1_PE); 			// enable I2C
+}
 
-	ADC_config(A0);	// Initialize ADC to read A0
+/* -----------------------------------------------------------------------------
+* function : ADC_config()
+* INs      : Register pointer address
+* OUTs     : None
+* action   : Configure the ADC to read from a specific analog pin
+* authors  : Norah Say (ns) - nsay@calpoly.edu
+* version  : 0.1
+* date     : 250403
+* -----------------------------------------------------------------------------
+* REVISION HISTORY
+* 0.1 250403 ns Created function - tested operational
+* -------------------------------------------------------------------------- */
+void ADC_config(uint8_t addr){
+	// Establish ADC transaction
+	while (I2C1->ISR & I2C_ISR_BUSY);
+	I2C1->CR2 &= ~( I2C_CR2_RD_WRN); 		// set WRITE mode
+	I2C1->CR2 &= ~( I2C_CR2_SADD); 			// clear device address
+	I2C1->CR2 |= ( ADC_ADDRESS << 1); 		// Set target address
+	I2C1->CR2 |= (3 << I2C_CR2_NBYTES_Pos);
+	I2C1->CR2 |= I2C_CR2_START; 			// Start read
+	I2C1->TXDR = (CONFIG_R); 				//xmit config address
+	while(!(I2C1->ISR & I2C_ISR_TXE)) ; 	// Wait for TXDR to empty
+	I2C1->TXDR = (addr);					// xmit analog pin address
+	while(!(I2C1->ISR & I2C_ISR_TXE)) ;		// Wait for TXDR to empty
+	I2C1->TXDR = (0x83); //xmit LSB
+	while(!(I2C1->ISR & I2C_ISR_TXE)) ;		// Wait for TXDR to empty
+
+	// Initiate STOP condition
+	I2C1->CR2 |= I2C_CR2_STOP;
+	while(!(I2C1->ISR & I2C_ISR_STOPF)) ;
+	I2C1->ICR |= I2C_ICR_STOPCF; 			// Clear stop flag
 }
 
 /* -----------------------------------------------------------------------------
@@ -104,36 +137,27 @@ uint16_t ADC_read(){
 	return data;
 }
 
+
 /* -----------------------------------------------------------------------------
-* function : ADC_config()
+* function : get_pressure()
 * INs      : Register pointer address
-* OUTs     : None
-* action   : Configure the ADC to read from a specific analog pin
+* OUTs     : Return pressure data in psi
+* action   : Convert
 * authors  : Norah Say (ns) - nsay@calpoly.edu
 * version  : 0.1
 * date     : 250403
 * -----------------------------------------------------------------------------
 * REVISION HISTORY
-* 0.1 250403 ns Created function - tested operational
+* 0.1 250409 ns Created function
+* 0.2 250410 ns Translate raw data to mV
 * -------------------------------------------------------------------------- */
-void ADC_config(uint8_t addr){
-	// Establish ADC transaction
-	while (I2C1->ISR & I2C_ISR_BUSY);
-	I2C1->CR2 &= ~( I2C_CR2_RD_WRN); 		// set WRITE mode
-	I2C1->CR2 &= ~( I2C_CR2_SADD); 			// clear device address
-	I2C1->CR2 |= ( ADC_ADDRESS << 1); 		// Set target address
-	I2C1->CR2 |= (3 << I2C_CR2_NBYTES_Pos);
-	I2C1->CR2 |= I2C_CR2_START; 			// Start read
-	I2C1->TXDR = (CONFIG_R); 				//xmit config address
-	while(!(I2C1->ISR & I2C_ISR_TXE)) ; 	// Wait for TXDR to empty
-	I2C1->TXDR = (addr);					// xmit analog pin address
-	while(!(I2C1->ISR & I2C_ISR_TXE)) ;		// Wait for TXDR to empty
-	I2C1->TXDR = (0x83); //xmit LSB
-	while(!(I2C1->ISR & I2C_ISR_TXE)) ;		// Wait for TXDR to empty
+uint8_t get_pressure(uint8_t addr){
+	uint8_t pressure;
+	unit32_t voltage;
 
-	// Initiate STOP condition
-	I2C1->CR2 |= I2C_CR2_STOP;
-	while(!(I2C1->ISR & I2C_ISR_STOPF)) ;
-	I2C1->ICR |= I2C_ICR_STOPCF; 			// Clear stop flag
+	ADC_config(addr);
+	voltage = ADC_read() * 125; //Translate decimal to uV
+	voltage = voltage / 1000;	// Translate decimal to mV
+	return voltage;
 }
 
