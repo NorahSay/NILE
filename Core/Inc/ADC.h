@@ -19,8 +19,9 @@
 
 /* Exported functions prototypes ---------------------------------------------*/
 void ADC_init(void);
-uint16_t ADC_read();
 void ADC_config(uint8_t addr);
+uint16_t ADC_read();
+uint16_t get_pressure(uint8_t addr);
 /* Private Defines -----------------------------------------------------------*/
 #define ADC_ADDRESS		(0x48)
 

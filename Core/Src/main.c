@@ -12,11 +12,15 @@
  * compiler        : STM32CubeIDE v.1.15.0
  * target          : NUCLEO-L4A6ZG
  * clocks          : 4MHz
- * @attention      : (c) 2023 STMicroelectronics.  All rights reserved.
  ******************************************************************************
  * REVISION HISTORY
  * 0.1 250304 ns	Create Project
- ****************************************************************************/
+ *****************************************************************************
+ * TODO:Debug issue with A1 and A3 not reading correctly when A1 and A2 are
+ * 		enabled
+ *****************************************************************************/
+
+
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -26,6 +30,8 @@
 /* Private variables ---------------------------------------------------------*/
 uint16_t A0_data;
 uint16_t A1_data;
+uint16_t A2_data;
+uint16_t A3_data;
 
 
 void SystemClock_Config(void);
@@ -40,11 +46,11 @@ int main(void)
 	  setup_GPIO_PORTB();
 	  ADC_init();
 
-//	  ADC_write(CONV_R);
-	  A0_data = ADC_read();
-	  ADC_config(A1);
-	  A1_data = ADC_read();
 
+	  A0_data = get_pressure(A0);
+	  A1_data = get_pressure(A1);
+	  A2_data = get_pressure(A2);
+	  A3_data = get_pressure(A3);
 
   while (1)
   {

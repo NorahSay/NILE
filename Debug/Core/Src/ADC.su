@@ -1,3 +1,4 @@
-../Core/Src/ADC.c:38:6:ADC_init	8	static
-../Core/Src/ADC.c:78:10:ADC_read	16	static
-../Core/Src/ADC.c:119:6:ADC_config	16	static
+../Core/Src/ADC.c:42:6:ADC_init	8	static
+../Core/Src/ADC.c:84:6:ADC_config	16	static
+../Core/Src/ADC.c:118:10:ADC_read	16	static
+../Core/Src/ADC.c:164:10:get_pressure	24	static
