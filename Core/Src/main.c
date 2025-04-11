@@ -49,7 +49,6 @@ int main(void)
 
 	  A0_data = get_pressure(A0);
 	  A1_data = get_pressure(A1);
-	  delay_us(5000);
 	  A2_data = get_pressure(A2);
 	  A3_data = get_pressure(A3);
 

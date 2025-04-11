@@ -21,7 +21,7 @@
 void ADC_init(void);
 void ADC_config(uint8_t addr);
 uint16_t ADC_read();
-uint8_t get_pressure(uint8_t addr);
+uint16_t get_pressure(uint8_t addr);
 /* Private Defines -----------------------------------------------------------*/
 #define ADC_ADDRESS		(0x48)
 
