@@ -154,12 +154,13 @@ uint16_t ADC_read(){
 * OUTs     : Return pressure data in psi
 * action   : Convert 16-bit data to mV
 * authors  : Norah Say (ns) - nsay@calpoly.edu
-* version  : 0.1
+* version  : 0.3
 * date     : 250403
 * -----------------------------------------------------------------------------
 * REVISION HISTORY
 * 0.1 250409 ns Created function
-* 0.2 250410 ns Translate raw data to psi - need calibration
+* 0.2 250410 ns Translate raw data to psi
+* 0.3 250416 ns Modify psi conversion
 * -------------------------------------------------------------------------- */
 uint16_t get_pressure(uint8_t addr){
 	uint16_t pressure;
@@ -167,8 +168,8 @@ uint16_t get_pressure(uint8_t addr){
 
 	ADC_config(addr);
 	ADC_read();					//discard this
-	voltage = ADC_read() * 130 /1000;		//valid data - in mV
-	pressure = 400 * voltage /1000 - 200;  	//psi
+	voltage = ADC_read() * 1885 /10000;		//valid data - in mV
+	pressure = voltage * 1600 / 4000 - 193;	// Convert to pressure
 
 	return pressure;
 }

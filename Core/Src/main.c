@@ -47,13 +47,13 @@ int main(void)
 	  ADC_init();
 
 
+
+  while (1)
+  {
 	  A0_data = get_pressure(A0);
 	  A1_data = get_pressure(A1);
 	  A2_data = get_pressure(A2);
 	  A3_data = get_pressure(A3);
-
-  while (1)
-  {
 
   }
   /* USER CODE END 3 */

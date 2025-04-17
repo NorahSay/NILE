@@ -61,10 +61,10 @@ void Error_Handler(void);
 /* USER CODE BEGIN Private defines */
 #define CONV_R			(0x00)
 #define CONFIG_R		(0x01)
-#define A0				(0xC3)
-#define A1				(0xD3)
-#define A2				(0xE3)
-#define A3				(0xF3)
+#define A0				(0x40)
+#define A1				(0x50)
+#define A2				(0x60)
+#define A3				(0x70)
 
 /* USER CODE END Private defines */
 
