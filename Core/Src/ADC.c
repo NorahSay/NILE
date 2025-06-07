@@ -90,7 +90,7 @@ void ADC_config(uint8_t addr){
 	I2C1->CR2 |= ( ADC_ADDRESS << 1) | 		// Set target address
 				 (3 << I2C_CR2_NBYTES_Pos)|
 				 I2C_CR2_START; 			// Start read
-	I2C1->TXDR = (CONFIG_R); 				//xmit config address
+	I2C1->TXDR = (CONFIG_R); 				// xmit config address
 	while(!(I2C1->ISR & I2C_ISR_TXE)) ; 	// Wait for TXDR to empty
 	I2C1->TXDR = (addr);					// xmit analog pin address
 	while(!(I2C1->ISR & I2C_ISR_TXE)) ;		// Wait for TXDR to empty

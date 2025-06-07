@@ -26,16 +26,24 @@
 #include "main.h"
 #include "ADC.h"
 #include "delay.h"
+#include "HX711.h"
+#include "stm32l4xx_hal.h"
+#include "kalman.h"
 
 /* Private variables ---------------------------------------------------------*/
 uint16_t A0_data;
 uint16_t A1_data;
 uint16_t A2_data;
 uint16_t A3_data;
+hx711_t loadcell ={0};
+int32_t load;
+int32_t no_load;
+float weight;
 
 
 void SystemClock_Config(void);
 void setup_GPIO_PORTB(void);
+void setup_GPIOA(void);
 
 int main(void)
 {
@@ -43,30 +51,37 @@ int main(void)
 	  HAL_Init();
 	  SysTick_Init();
 	  SystemClock_Config();
-	  setup_GPIO_PORTB();
-	  ADC_init();
+	  setup_GPIOA();
+//	  kalman_init
+	  //ADC_init();
+	  //MX_USART2_UART_Init();
+
+//	  A0_data = get_pressure(A0);
+//	  A1_data = get_pressure(A1);
+//	  A2_data = get_pressure(A2);
+//	  A3_data = get_pressure(A3);
 
 
+	  hx711_init(&loadcell, GPIOA, GPIO_PIN_2, GPIOA, GPIO_PIN_1);
+	  hx711_tare(&loadcell, 20);
+	  no_load = hx711_value_ave(&loadcell,100);
+	  load = hx711_value_ave(&loadcell,100);
+	  hx711_calibration(&loadcell,no_load,load,1.354);
 
-  while (1)
-  {
-	  A0_data = get_pressure(A0);
-	  A1_data = get_pressure(A1);
-	  A2_data = get_pressure(A2);
-	  A3_data = get_pressure(A3);
-
-  }
-  /* USER CODE END 3 */
+	  while (1)
+	  {
+	    HAL_Delay(500);
+	    weight = hx711_weight(&loadcell, 20);
+	  }
+}
+void setup_GPIOA(void) {
+	RCC->AHB2ENR |= (RCC_AHB2ENR_GPIOAEN);
 }
 
-void setup_GPIO_PORTB(void) {
-	RCC->AHB2ENR |= (RCC_AHB2ENR_GPIOBEN);
-	GPIOB->MODER &= ~( GPIO_MODER_MODE14 );
-	GPIOB->MODER |= ( GPIO_MODER_MODE14_0 );
-	GPIOB->OTYPER &= ~( GPIO_OTYPER_OT14 );
-	GPIOB->PUPDR &= ~( GPIO_PUPDR_PUPD14 );
-	GPIOB->OSPEEDR |= (3 << GPIO_OSPEEDR_OSPEED14_Pos);
-	GPIOB->BRR = (GPIO_PIN_14 );
+float hx711_value_ave_filtered(hx711_t *hx711, kalman_filter_t *kf, uint16_t sample)
+{
+    float raw_value_ave = hx711_value_ave(hx711, sample);
+    return kalman_update(kf, raw_value_ave);
 }
 /**
   * @brief System Clock Configuration
@@ -111,6 +126,7 @@ void SystemClock_Config(void)
     Error_Handler();
   }
 }
+
 
 /* USER CODE BEGIN 4 */
 
