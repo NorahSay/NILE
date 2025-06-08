@@ -1,0 +1,5 @@
+../Core/Src/solenoid_driver.c:49:6:solenoid_driver_Init	16	static
+../Core/Src/solenoid_driver.c:79:6:solenoid_on	0	static
+../Core/Src/solenoid_driver.c:96:6:solenoid_off	0	static
+../Core/Src/solenoid_driver.c:112:6:solenoid_toggle	0	static
+../Core/Src/solenoid_driver.c:128:6:solenoid_all_off	0	static

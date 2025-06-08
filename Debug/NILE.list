@@ -37,15 +37,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  00001302  00000000  00000000  00009f39  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00006e59  00000000  00000000  0000b23b  2**0
+ 17 .debug_line   00006e61  00000000  00000000  0000b23b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000ee9ff  00000000  00000000  00012094  2**0
+ 18 .debug_str    000ee9ff  00000000  00000000  0001209c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  00100a93  2**0
+ 19 .comment      00000043  00000000  00000000  00100a9b  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  000017a4  00000000  00000000  00100ad8  2**2
+ 20 .debug_frame  000017a4  00000000  00000000  00100ae0  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000064  00000000  00000000  0010227c  2**0
+ 21 .debug_line_str 00000064  00000000  00000000  00102284  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1022,6 +1022,7 @@ int main(void)
  800099e:	2114      	movs	r1, #20
  80009a0:	4814      	ldr	r0, [pc, #80]	@ (80009f4 <main+0x80>)
  80009a2:	f7ff ff17 	bl	80007d4 <hx711_tare>
+
 	  no_load = hx711_value_ave(&loadcell,100);
  80009a6:	2164      	movs	r1, #100	@ 0x64
  80009a8:	4812      	ldr	r0, [pc, #72]	@ (80009f4 <main+0x80>)
@@ -1029,28 +1030,28 @@ int main(void)
  80009ae:	4603      	mov	r3, r0
  80009b0:	4a11      	ldr	r2, [pc, #68]	@ (80009f8 <main+0x84>)
  80009b2:	6013      	str	r3, [r2, #0]
-	  load = hx711_value_ave(&loadcell,100);
- 80009b4:	2164      	movs	r1, #100	@ 0x64
- 80009b6:	480f      	ldr	r0, [pc, #60]	@ (80009f4 <main+0x80>)
- 80009b8:	f7ff fec9 	bl	800074e <hx711_value_ave>
- 80009bc:	4603      	mov	r3, r0
- 80009be:	4a0f      	ldr	r2, [pc, #60]	@ (80009fc <main+0x88>)
- 80009c0:	6013      	str	r3, [r2, #0]
 	  hx711_calibration(&loadcell,no_load,load,1.354);
- 80009c2:	4b0d      	ldr	r3, [pc, #52]	@ (80009f8 <main+0x84>)
- 80009c4:	681b      	ldr	r3, [r3, #0]
- 80009c6:	4a0d      	ldr	r2, [pc, #52]	@ (80009fc <main+0x88>)
- 80009c8:	6812      	ldr	r2, [r2, #0]
- 80009ca:	ed9f 0a0d 	vldr	s0, [pc, #52]	@ 8000a00 <main+0x8c>
- 80009ce:	4619      	mov	r1, r3
- 80009d0:	4808      	ldr	r0, [pc, #32]	@ (80009f4 <main+0x80>)
- 80009d2:	f7ff ff41 	bl	8000858 <hx711_calibration>
+ 80009b4:	4b10      	ldr	r3, [pc, #64]	@ (80009f8 <main+0x84>)
+ 80009b6:	681b      	ldr	r3, [r3, #0]
+ 80009b8:	4a10      	ldr	r2, [pc, #64]	@ (80009fc <main+0x88>)
+ 80009ba:	6812      	ldr	r2, [r2, #0]
+ 80009bc:	ed9f 0a10 	vldr	s0, [pc, #64]	@ 8000a00 <main+0x8c>
+ 80009c0:	4619      	mov	r1, r3
+ 80009c2:	480c      	ldr	r0, [pc, #48]	@ (80009f4 <main+0x80>)
+ 80009c4:	f7ff ff48 	bl	8000858 <hx711_calibration>
 
 	  while (1)
 	  {
 	    HAL_Delay(500);
- 80009d6:	f44f 70fa 	mov.w	r0, #500	@ 0x1f4
- 80009da:	f000 f975 	bl	8000cc8 <HAL_Delay>
+ 80009c8:	f44f 70fa 	mov.w	r0, #500	@ 0x1f4
+ 80009cc:	f000 f97c 	bl	8000cc8 <HAL_Delay>
+		load = hx711_value_ave(&loadcell,100);
+ 80009d0:	2164      	movs	r1, #100	@ 0x64
+ 80009d2:	4808      	ldr	r0, [pc, #32]	@ (80009f4 <main+0x80>)
+ 80009d4:	f7ff febb 	bl	800074e <hx711_value_ave>
+ 80009d8:	4603      	mov	r3, r0
+ 80009da:	4a08      	ldr	r2, [pc, #32]	@ (80009fc <main+0x88>)
+ 80009dc:	6013      	str	r3, [r2, #0]
 	    weight = hx711_weight(&loadcell, 20);
  80009de:	2114      	movs	r1, #20
  80009e0:	4804      	ldr	r0, [pc, #16]	@ (80009f4 <main+0x80>)
@@ -1060,7 +1061,7 @@ int main(void)
  80009ec:	edc3 7a00 	vstr	s15, [r3]
 	    HAL_Delay(500);
  80009f0:	bf00      	nop
- 80009f2:	e7f0      	b.n	80009d6 <main+0x62>
+ 80009f2:	e7e9      	b.n	80009c8 <main+0x54>
  80009f4:	20000028 	.word	0x20000028
  80009f8:	20000044 	.word	0x20000044
  80009fc:	20000040 	.word	0x20000040

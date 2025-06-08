@@ -429,6 +429,100 @@ Discarded input sections
  .debug_macro   0x00000000      0x433 ./Core/Src/main.o
  .debug_macro   0x00000000       0x28 ./Core/Src/main.o
  .debug_macro   0x00000000       0x10 ./Core/Src/main.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .group         0x00000000        0xc ./Core/Src/solenoid_driver.o
+ .text          0x00000000        0x0 ./Core/Src/solenoid_driver.o
+ .data          0x00000000        0x0 ./Core/Src/solenoid_driver.o
+ .bss           0x00000000        0x0 ./Core/Src/solenoid_driver.o
+ .text.solenoid_driver_Init
+                0x00000000       0xb0 ./Core/Src/solenoid_driver.o
+ .text.solenoid_on
+                0x00000000       0x34 ./Core/Src/solenoid_driver.o
+ .text.solenoid_off
+                0x00000000       0x30 ./Core/Src/solenoid_driver.o
+ .text.solenoid_toggle
+                0x00000000       0x34 ./Core/Src/solenoid_driver.o
+ .text.solenoid_all_off
+                0x00000000       0x1c ./Core/Src/solenoid_driver.o
+ .debug_info    0x00000000      0x3ff ./Core/Src/solenoid_driver.o
+ .debug_abbrev  0x00000000      0x155 ./Core/Src/solenoid_driver.o
+ .debug_aranges
+                0x00000000       0x40 ./Core/Src/solenoid_driver.o
+ .debug_rnglists
+                0x00000000       0x2c ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000      0x1ba ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000      0xab4 ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000      0x19b ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000       0x2e ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000       0x28 ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000       0x22 ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000       0x8e ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000       0x51 ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000      0x103 ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000       0x6a ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000      0x1df ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000       0x1c ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000       0x22 ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000       0xfb ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000     0x1011 ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000      0x11f ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000    0x1c8c1 ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000       0x6d ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000     0x38fb ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000      0x189 ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000       0x5c ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000     0x1909 ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000      0x773 ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000      0x1b9 ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000      0x202 ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000      0x26b ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000      0x23d ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000      0x241 ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000      0x3ad ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000       0xe4 ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000      0x122 ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000      0x3ef ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000      0x433 ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000       0x28 ./Core/Src/solenoid_driver.o
+ .debug_macro   0x00000000       0x46 ./Core/Src/solenoid_driver.o
+ .debug_line    0x00000000      0x86d ./Core/Src/solenoid_driver.o
+ .debug_str     0x00000000    0xecee6 ./Core/Src/solenoid_driver.o
+ .comment       0x00000000       0x44 ./Core/Src/solenoid_driver.o
+ .debug_frame   0x00000000       0xcc ./Core/Src/solenoid_driver.o
+ .ARM.attributes
+                0x00000000       0x34 ./Core/Src/solenoid_driver.o
  .group         0x00000000        0xc ./Core/Src/stm32l4xx_hal_msp.o
  .group         0x00000000        0xc ./Core/Src/stm32l4xx_hal_msp.o
  .group         0x00000000        0xc ./Core/Src/stm32l4xx_hal_msp.o
@@ -2634,6 +2728,7 @@ LOAD ./Core/Src/HX711.o
 LOAD ./Core/Src/delay.o
 LOAD ./Core/Src/kalman.o
 LOAD ./Core/Src/main.o
+LOAD ./Core/Src/solenoid_driver.o
 LOAD ./Core/Src/stm32l4xx_hal_msp.o
 LOAD ./Core/Src/stm32l4xx_it.o
 LOAD ./Core/Src/syscalls.o
@@ -3223,19 +3318,19 @@ LOAD C:/ST/STM32CubeIDE_1.15.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_macro   0x00000f66      0x1c2 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
  .debug_macro   0x00001128      0x1da ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
 
-.debug_line     0x00000000     0x6e59
+.debug_line     0x00000000     0x6e61
  .debug_line    0x00000000      0x971 ./Core/Src/HX711.o
  .debug_line    0x00000971      0x737 ./Core/Src/delay.o
- .debug_line    0x000010a8      0x7e9 ./Core/Src/main.o
- .debug_line    0x00001891      0x6eb ./Core/Src/stm32l4xx_hal_msp.o
- .debug_line    0x00001f7c      0x7ae ./Core/Src/stm32l4xx_it.o
- .debug_line    0x0000272a      0x786 ./Core/Src/system_stm32l4xx.o
- .debug_line    0x00002eb0       0x7a ./Core/Startup/startup_stm32l4a6zgtx.o
- .debug_line    0x00002f2a      0xae1 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
- .debug_line    0x00003a0b      0xcaa ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
- .debug_line    0x000046b5      0xb55 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
- .debug_line    0x0000520a      0xcad ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
- .debug_line    0x00005eb7      0xfa2 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
+ .debug_line    0x000010a8      0x7f1 ./Core/Src/main.o
+ .debug_line    0x00001899      0x6eb ./Core/Src/stm32l4xx_hal_msp.o
+ .debug_line    0x00001f84      0x7ae ./Core/Src/stm32l4xx_it.o
+ .debug_line    0x00002732      0x786 ./Core/Src/system_stm32l4xx.o
+ .debug_line    0x00002eb8       0x7a ./Core/Startup/startup_stm32l4a6zgtx.o
+ .debug_line    0x00002f32      0xae1 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o
+ .debug_line    0x00003a13      0xcaa ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o
+ .debug_line    0x000046bd      0xb55 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o
+ .debug_line    0x00005212      0xcad ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o
+ .debug_line    0x00005ebf      0xfa2 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o
 
 .debug_str      0x00000000    0xee9ff
  .debug_str     0x00000000    0xecb4a ./Core/Src/HX711.o

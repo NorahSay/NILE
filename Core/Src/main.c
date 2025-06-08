@@ -36,7 +36,7 @@ uint16_t A1_data;
 uint16_t A2_data;
 uint16_t A3_data;
 hx711_t loadcell ={0};
-int32_t load;
+int32_t with_load;
 int32_t no_load;
 float weight;
 
@@ -64,14 +64,16 @@ int main(void)
 
 	  hx711_init(&loadcell, GPIOA, GPIO_PIN_2, GPIOA, GPIO_PIN_1);
 	  hx711_tare(&loadcell, 20);
-	  no_load = hx711_value_ave(&loadcell,100);
-	  load = hx711_value_ave(&loadcell,100);
-	  hx711_calibration(&loadcell,no_load,load,1.354);
+	  no_load = hx711_value_ave(&loadcell,20);
+	  HAL_Delay(100);
+	  with_load = hx711_value_ave(&loadcell,20);
+	  hx711_calibration(&loadcell,no_load,with_load,1.354);
 
 	  while (1)
 	  {
-	    HAL_Delay(500);
-	    weight = hx711_weight(&loadcell, 20);
+	    HAL_Delay(10);
+//		load = hx711_value_ave(&loadcell,10);
+	    weight = hx711_weight(&loadcell, 10);
 	  }
 }
 void setup_GPIOA(void) {
