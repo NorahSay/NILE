@@ -1,0 +1,4 @@
+../Core/Src/LPUART.c:32:6:LPUART_init	1
+../Core/Src/LPUART.c:78:6:LPUART_Print	3
+../Core/Src/LPUART.c:100:6:LPUART_ESC_Print	1
+../Core/Src/LPUART.c:121:6:Terminal_Init	1

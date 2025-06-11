@@ -1,0 +1,4 @@
+../Core/Src/LPUART.c:32:6:LPUART_init	0	static,ignoring_inline_asm
+../Core/Src/LPUART.c:78:6:LPUART_Print	8	static
+../Core/Src/LPUART.c:100:6:LPUART_ESC_Print	16	dynamic
+../Core/Src/LPUART.c:121:6:Terminal_Init	8	static

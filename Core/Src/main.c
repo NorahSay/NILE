@@ -15,9 +15,6 @@
  ******************************************************************************
  * REVISION HISTORY
  * 0.1 250304 ns	Create Project
- *****************************************************************************
- * TODO:Debug issue with A1 and A3 not reading correctly when A1 and A2 are
- * 		enabled
  *****************************************************************************/
 
 
@@ -29,21 +26,29 @@
 #include "HX711.h"
 #include "stm32l4xx_hal.h"
 #include "kalman.h"
+#include "solenoid_driver.h"
+#include "LPUART.h"
+#include <stdio.h>
 
 /* Private variables ---------------------------------------------------------*/
 uint16_t A0_data;
 uint16_t A1_data;
 uint16_t A2_data;
 uint16_t A3_data;
-hx711_t loadcell ={0};
-int32_t with_load;
-int32_t no_load;
-float weight;
+hx711_t loadcell[4] ={0};
+kalman_filter_t kf;
+int32_t w_load[4];
+int32_t no_load[4];
+float weight[4];
+int32_t load_array[200];
+uint16_t i = 0;
+char str[8];
+
 
 
 void SystemClock_Config(void);
 void setup_GPIO_PORTB(void);
-void setup_GPIOA(void);
+void setup_LC_port(void);
 
 int main(void)
 {
@@ -51,8 +56,11 @@ int main(void)
 	  HAL_Init();
 	  SysTick_Init();
 	  SystemClock_Config();
-	  setup_GPIOA();
-//	  kalman_init
+	  LPUART_init();
+	  Terminal_Init();
+
+	  setup_LC_port();
+//	  kalman_init(&kf,Q,I,initial_val);
 	  //ADC_init();
 	  //MX_USART2_UART_Init();
 
@@ -62,22 +70,43 @@ int main(void)
 //	  A3_data = get_pressure(A3);
 
 
-	  hx711_init(&loadcell, GPIOA, GPIO_PIN_2, GPIOA, GPIO_PIN_1);
-	  hx711_tare(&loadcell, 20);
-	  no_load = hx711_value_ave(&loadcell,20);
-	  HAL_Delay(100);
-	  with_load = hx711_value_ave(&loadcell,20);
-	  hx711_calibration(&loadcell,no_load,with_load,1.354);
+	  hx711_init(&loadcell[0], GPIOA, GPIO_PIN_2, GPIOA, GPIO_PIN_1);
+	  hx711_init(&loadcell[1],GPIOA, GPIO_PIN_4, GPIOB, GPIO_PIN_4);
+	  hx711_init(&loadcell[2], GPIOB, GPIO_PIN_5, GPIOB, GPIO_PIN_3);
+	  hx711_init(&loadcell[3],GPIOA, GPIO_PIN_0, GPIOB, GPIO_PIN_0);
+
+
+	  for(i = 0; i < 4; i++) {
+		  hx711_tare(&loadcell[i], 20);
+		  w_load[i] = hx711_value_ave(&loadcell[i],20);
+	  }
+	  for(i = 0; i < 4; i++) {
+		  no_load[i] = hx711_value_ave(&loadcell[i],20);
+	  }
+	  for(i = 0; i < 4; i++) {
+		  hx711_calibration(&loadcell[i],no_load[i],w_load[i],6);
+	  }
 
 	  while (1)
 	  {
-	    HAL_Delay(10);
-//		load = hx711_value_ave(&loadcell,10);
-	    weight = hx711_weight(&loadcell, 10);
+//	    if (i < 200) {
+//	    	load_array[i] = hx711_value(&loadcell);
+//	    	sprintf(str,"%d",load_array[i]);
+//	    	LPUART_Print(str);
+//	    	LPUART_ESC_Print("1B");
+//	    	LPUART_ESC_Print("8D");
+//	    	i++;
+//	    }
+
+		weight[0] = hx711_weight(&loadcell[2], 10);
+	    weight[1] = hx711_weight(&loadcell[1], 10);
+	    weight[2] = hx711_weight(&loadcell[2], 10);
+	    weight[3] = hx711_weight(&loadcell[2], 10);
 	  }
 }
-void setup_GPIOA(void) {
+void setup_LC_port(void) {
 	RCC->AHB2ENR |= (RCC_AHB2ENR_GPIOAEN);
+	RCC->AHB2ENR |= (RCC_AHB2ENR_GPIOBEN);
 }
 
 float hx711_value_ave_filtered(hx711_t *hx711, kalman_filter_t *kf, uint16_t sample)

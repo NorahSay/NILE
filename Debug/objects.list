@@ -1,5 +1,6 @@
 "./Core/Src/ADC.o"
 "./Core/Src/HX711.o"
+"./Core/Src/LPUART.o"
 "./Core/Src/delay.o"
 "./Core/Src/kalman.o"
 "./Core/Src/main.o"
